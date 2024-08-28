@@ -39,3 +39,6 @@ API
 - REST
 
 difference between API & Webservice
+
+
+REST API method
