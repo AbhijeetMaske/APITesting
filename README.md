@@ -19,3 +19,23 @@ Presenation layer
 Application layer
 
 Data Layer
+
+### Application Programing Interface (API)
+is way to communication between two application where appliation may differ in their platform or in tern of technology
+
+[ Front End of the application]
+
+[Middle Layer (API Layer)]
+- This is responsiblity of mid layer to take the data from frontend and insert into the backend
+- This is responsiblity of mid layer to fetch the data from backend and dispay on the fronend
+
+[Backend Layer]
+
+*** API is way to communication between two layer.
+
+
+API
+- SOAP
+- REST
+
+difference between API & Webservice
