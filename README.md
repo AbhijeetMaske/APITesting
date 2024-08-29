@@ -42,3 +42,12 @@ difference between API & Webservice
 
 
 REST API method
+GET
+PUT
+POST
+DELETE
+
+http VS Https
+
+
+
