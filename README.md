@@ -51,3 +51,59 @@ http VS Https
 
 
 
+# 2
+
+POSTMAN - API Testing tool
+we can do the api testing by using postman
+
+Desktop/web
+Workspace - Area we maintain the files and Saved
+Workspace - create workspace, rename, delete
+
+creating ccollection - contains number of folders and http request
+create, rename, delete , run the collection
+we can create a N number of collection under the  workspace
+
+request------>API -------->Response
+
+HTTP request
+--------------------------
+GET -- retrive the resourse from the database
+PUT -- update existing resourse on the database
+POST -- create resourse on database
+PATCH -- update partial details on the resourse
+DELETE -- dlete existing resourse from the database
+
+Sample API:
+-------------
+https://reqres.in/api/users?page=2
+
+Validation
+----------
+Status code
+Time
+size data
+response body (JSON/XML)
+cookies
+headers
+
+HTTP status code
+----------------------
+3 Level
+
+200
+400
+500
+
+
+
+
+
+
+
+
+
+
+
+
+
