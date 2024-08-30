@@ -99,10 +99,15 @@ HTTP status code
 # 3
 
 Create your own API's
-NodeJs
-npm -node package manager
-json-server
+1) NodeJs
+ npm -node package manager
+  node --version
+  npm --version
+  npm -node package manager
 
+2) json-server
+   run the below command in the runtime/terminal
+   npm install -g json-server
 
 
 
