@@ -96,7 +96,12 @@ HTTP status code
 500
 
 
+# 3
 
+Create your own API's
+NodeJs
+npm -node package manager
+json-server
 
 
 
