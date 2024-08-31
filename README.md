@@ -224,4 +224,12 @@ e.g.
 
 Comparison JSON & XML
 
+JSON Array
+
+ - json array reprents order list of value
+ - json array can store multiple values. It can store string, Number, boolean or object in JSON array
+ - In JSON Array, value must be seperated by comma
+ - The  [square bracket ] represent the json array
+
+
 
