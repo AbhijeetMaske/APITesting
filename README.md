@@ -109,7 +109,7 @@ Create your own API's
    run the below command in the runtime/terminal
    npm install -g json-server
 
-
+JSON - JavaScript object Notation
 
 Create a json 
 ```json
@@ -191,6 +191,33 @@ POST - URL :  http://localhost:3000/student | body-->raw -->json
 
 4.PUT - http://localhost:3000/student?id=5 
 5. DELETE - http://localhost:3000/student?id=5 
+
+
+
+# JSON
+
+- JSON - JavaScript Object Notation
+- json is syntax for storing and exchanging data
+- Basically it was designed for human-readable data exchange
+- JSON is text, Written with java script object notation
+- It has been extended from the javascript scripting language
+- json internet media type is application/json
+
+DATA TYPE
+1. Number
+2. Boolean
+3. String
+4. Null
+5. Object
+6. Array
+
+Data Will be represented Key & value
+e.g. 
+{
+ "Name" : "John"
+}
+
+
 
 
 
