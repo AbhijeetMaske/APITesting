@@ -111,9 +111,86 @@ Create your own API's
 
 
 
+Create a json 
+```json
+{
+    "student": [
+        {
+            "id": 1,
+            "name": "John",
+            "location": "India",
+            "phone": "1234567890",
+            "course": [
+                "Java",
+                "Selenium"
+            ]
+        },
+        {
+            "id": 2,
+            "name": "Emily",
+            "location": "USA",
+            "phone": "9876543210",
+            "course": [
+                "Python",
+                "Data Science"
+            ]
+        },
+        {
+            "id": 3,
+            "name": "Michael",
+            "location": "Canada",
+            "phone": "5551234567",
+            "course": [
+                "JavaScript",
+                "React"
+            ]
+        },
+        {
+            "id": 4,
+            "name": "Sophia",
+            "location": "Australia",
+            "phone": "4449876543",
+            "course": [
+                "DevOps",
+                "AWS"
+            ]
+        },
+        {
+            "id": 5,
+            "name": "Liam",
+            "location": "UK",
+            "phone": "2223334445",
+            "course": [
+                "C++",
+                "Machine Learning"
+            ]
+        }
+    ]
+}
+```
+go to the path -- cmd 
+enter {path} json-server $fileName$.json
 
+Postman API
 
+1. GET  - All student data |   http://localhost:3000/student
+2. GET -  get student data for id=1 | http://localhost:3000/student?id=1
+3. POST - create a new student data
+  ```json 
+   {
+    "name": "Ram",
+    "location": "Sharma",
+    "phone": "9037282",
+    "course": [
+        "Java",
+        "Angular"
+    ]
+}
+```
+POST - URL :  http://localhost:3000/student | body-->raw -->json 
 
+4.PUT - http://localhost:3000/student?id=5 
+5. DELETE - http://localhost:3000/student?id=5 
 
 
 
