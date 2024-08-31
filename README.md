@@ -212,12 +212,16 @@ DATA TYPE
 6. Array
 
 Data Will be represented Key & value
+key is always included in quotation
+curly braces should hold the object
+square braket hold arrays
+
 e.g. 
 {
  "Name" : "John"
 }
 
 
-
+Comparison JSON & XML
 
 
