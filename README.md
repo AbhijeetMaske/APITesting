@@ -245,8 +245,8 @@ PM- library - Function/Assertion provided
 
 Normal Function - 
 Arrow Function - 
-
-# Testing the status code
+# Testing the API
+## Testing the status code
 Test for the  response status code
 ```
 pm.test("Response status code is 200", function () {
@@ -263,5 +263,13 @@ Check the status code text
 ```
 pm.test("status code name has a string", ()=> {
     pm.response.to.have.status("Created");
+});
+```
+## Testing the Header
+
+Check that the response header is present
+```
+pm.test("Content-Type header is present", ()=> {
+    pm.response.to.have.header("Content-Type");
 });
 ```
