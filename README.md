@@ -232,4 +232,36 @@ JSON Array
  - The  [square bracket ] represent the json array
 
 
+# 4
 
+Assetion - Validation point
+- Status code
+- Header
+- Cookies
+- Response time
+- Response body
+  
+PM- library - Function/Assertion provided
+
+Normal Function - 
+Arrow Function - 
+
+# Testing the status code
+Test for the  response status code
+```
+pm.test("Response status code is 200", function () {
+    pm.expect(pm.response.code).to.equal(200);
+});
+```
+if you want to test for the status code being one of a set, include them all in an array use one of 
+```
+pm.test("successful POST request", ()=> {
+    pm.expect(pm.response.code).to.be.oneOf([200, 201]);
+});
+```
+Check the status code text
+```
+pm.test("status code name has a string", ()=> {
+    pm.response.to.have.status("Created");
+});
+```
