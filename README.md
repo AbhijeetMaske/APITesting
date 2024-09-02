@@ -322,3 +322,30 @@ pm. test ("Test data type of the response", () => {
      pm.expect(jsonData.courses).to.be.an ("array");
 });
 ```
+
+## Asserting array properties
+Check if an array is empty and if it contains particular items:
+```
+{
+  "id": 1,
+  "name": "John",
+  "location": "india",
+  "phone": "1234567890",
+  "courses": [        
+           "Java",
+           "Selenium"
+             ]
+}
+```
+
+```
+pm. test ("Test array properties", () => {
+ //courses includes "Java"
+pm.expect (jsonData.courses). to. include ("Java");
+//courses array must include all listed
+pm.expect (jsonData.courses).to.have.members (["Java", "Selenium"]);
+});
+```
+
+
+
