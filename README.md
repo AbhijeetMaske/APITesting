@@ -415,4 +415,8 @@ var schema={
 ]
 }
 ```
+### JSON Schema Validation
 
+pm.test('Schema is valid', function(){
+ pm.expect(tv4.validate(jsonData, schema)).to.be.true;
+});
