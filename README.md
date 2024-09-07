@@ -196,14 +196,14 @@ These codes indicate that the client’s request was successfully received, unde
 - **201 Created**: The request was successful, and a new resource has been created as a result.
 - **202 Accepted**: The request has been accepted for processing, but the processing has not been completed yet.
 - **204 No Content**: The request was successful, but there is no content to return in the response.
-
+* * * * *
 **3xx: Redirection**
 These codes indicate that further action is needed from the client to fulfill the request, often requiring a redirect.
 
 - **301 Moved Permanently**: The requested resource has been permanently moved to a new URI.
 - **302 Found**: The requested resource has been temporarily moved to a different URI.
 - **304 Not Modified**: The resource has not been modified since the last request, so the client can use the cached version.
-
+* * * * *
 **4xx: Client Errors**
 These codes indicate that the request contains bad syntax or cannot be fulfilled by the server due to an issue on the client’s side.
 
@@ -214,7 +214,7 @@ These codes indicate that the request contains bad syntax or cannot be fulfilled
 - **405 Method Not Allowed**: The request method (e.g., GET, POST) is not supported by the resource.
 - **409 Conflict**: There is a conflict with the current state of the resource (e.g., a duplicate entry).
 - **429 Too Many Requests**: The client has sent too many requests in a given amount of time (rate limiting).
-
+* * * * *
 **5xx: Server Errors**
 These codes indicate that the server failed to fulfill a valid request due to an error on the server side.
 
@@ -224,8 +224,11 @@ These codes indicate that the server failed to fulfill a valid request due to an
 - **503 Service Unavailable**: The server is currently unavailable (e.g., overloaded or down for maintenance).
 - **504 Gateway Timeout**: The server, acting as a gateway or proxy, did not receive a timely response from the upstream server.
 - **505 HTTP Version Not Supported**: The server does not support the HTTP protocol version used in the request.
-  
-# 3
+
+### Sample API for Test
+
+
+# 3. Chapter 3 - Postman | Environment Setup & Types of HTTP Requests
 
 Create your own API's
 1) NodeJs
