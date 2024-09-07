@@ -91,8 +91,21 @@ Components of a URL:
 - Protocol: The scheme (e.g., http, https, ftp) used to access the resource.
 - Domain: The host or server where the resource is located (e.g., example.com).
 - Path: The specific location or directory of the resource on the server (e.g., /page).
+
 Example:
 - `https://www.example.com/index.html` [ Protocol: https ], [ Domain: www.example.com ] & [ Path: /index.html ]
+
+**URN (Uniform Resource Name):**
+A URN is a type of URI that names a resource uniquely without pointing to its location. It is used to identify a resource by name, independent of its location or how to access it. URNs are often used in systems that need a persistent identifier for resources, even if the location or details change over time.
+
+Example:
+`urn:isbn:978-3-16-148410-0`
+This is a URN for a book identified by its ISBN number. It names the resource but doesn’t tell you where to find it.
+
+**Key Differences:**
+1. URI: A broad category that includes both URLs and URNs.
+2. URL: A type of URI that specifies where a resource is located and how to retrieve it.
+3. URN: A type of URI that identifies a resource by name, without specifying its location.
 
 # 2
 
