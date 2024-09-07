@@ -1,6 +1,6 @@
 # API Testing [Manual]
 
-# 1. Chapter 1
+# 1. Chapter 1 - API Introduction
 
 **API Testing** is a type of software testing that involves testing application programming interfaces (APIs) directly. It focuses on verifying the functionality, reliability, performance, and security of the APIs, ensuring that they meet the expected behaviors and requirements.
 
@@ -129,51 +129,102 @@ Example in API Testing:
      - PUT /api/users/123: Update user 123.
      - DELETE /api/users/123: Delete user 123.
 
-# 2
+# 2. Chapter 2 - Postman | Environment Setup & Types of HTTP Requests
 
-POSTMAN - API Testing tool
-we can do the api testing by using postman
+### Postman - API Testing Tool Overview:
+Postman is a powerful tool used for API testing, available as both a desktop and web application. It allows users to create, send, and manage HTTP requests and test the responses from APIs. Postman helps ensure APIs function correctly by validating responses, status codes, headers, and more.
 
-Desktop/web
-Workspace - Area we maintain the files and Saved
-Workspace - create workspace, rename, delete
+**Key Components in Postman:**
+- Workspace:
+   - The workspace is where you organize and maintain collections, folders, and saved HTTP requests.
+   - You can create, rename, and delete workspaces.
+   - Multiple workspaces can be created, allowing you to separate and manage different projects.
+- Collections:
+   - Collections are organized sets of folders and HTTP requests grouped by a particular project or functionality.
+   - You can create, rename, delete, and run collections in Postman.
+   - Collections allow easy execution and sharing of API tests.
+   - A single workspace can have multiple collections for various APIs.
 
-creating ccollection - contains number of folders and http request
-create, rename, delete , run the collection
-we can create a N number of collection under the  workspace
+**HTTP Methods in API Requests:**
+- GET:
+   - Used to retrieve resources from the database.
+   - Example: `GET /api/users?page=2` fetches users from page 2.
+- POST:
+   - Used to create new resources on the database.
+   - Example: `POST /api/users` with user details creates a new user.
+- PUT:
+   - Used to update existing resources completely on the database.
+   - Example: `PUT /api/users/123` updates the user with ID 123.
+- PATCH:
+   - Used to partially update existing resources on the database.
+   - Example: `PATCH /api/users/123` updates part of the user’s information, like their email or name.
+- DELETE:
+   - Used to delete resources from the database.
+   - Example: `DELETE /api/users/123` deletes the user with ID 123.
 
-request------>API -------->Response
+**Sample API:**
+- Example API Endpoint: `https://reqres.in/api/users?page=2`
+   - This sample endpoint can be used to test retrieving users from the Reqres API (an example RESTful API for testing).
 
-HTTP request
---------------------------
-GET -- retrive the resourse from the database
-PUT -- update existing resourse on the database
-POST -- create resourse on database
-PATCH -- update partial details on the resourse
-DELETE -- dlete existing resourse from the database
+**Validation in API Testing:**
+After sending a request, it is essential to validate the response to ensure the API is working as expected. Key aspects to validate include:
 
-Sample API:
--------------
-https://reqres.in/api/users?page=2
+- Status Code:
+   - Verifies whether the API request was successful or failed.
+   - Examples:
+       - `200 OK`: The request was successful.
+       - `400 Bad Request`: The client request was invalid.
+       - `500 Internal Server Error`: The server encountered an error.
+- Response Time:
+  - Measures how long the server takes to respond. Optimally, APIs should respond quickly.
+- Size of Data:
+  - Checks how much data is being returned in the response. This can be useful when large responses are expected.
+- Response Body:
+  - The actual data returned by the API, often in JSON or XML format.
+  - You need to verify the structure and content of the response data.
+- Cookies:
+  - Some APIs return cookies that need to be validated or used in future requests.
+- Headers:
+  - Headers provide additional information about the request/response (e.g., Content-Type, Authorization).
 
-Validation
-----------
-Status code
-Time
-size data
-response body (JSON/XML)
-cookies
-headers
+**HTTP Status Codes:**
 
-HTTP status code
-----------------------
-3 Level
+**2xx: Success**
+These codes indicate that the client’s request was successfully received, understood, and accepted by the server.
 
-200
-400
-500
+- **200 OK**: The request was successful, and the server returned the requested data.
+- **201 Created**: The request was successful, and a new resource has been created as a result.
+- **202 Accepted**: The request has been accepted for processing, but the processing has not been completed yet.
+- **204 No Content**: The request was successful, but there is no content to return in the response.
 
+**3xx: Redirection**
+These codes indicate that further action is needed from the client to fulfill the request, often requiring a redirect.
 
+- **301 Moved Permanently**: The requested resource has been permanently moved to a new URI.
+- **302 Found**: The requested resource has been temporarily moved to a different URI.
+- **304 Not Modified**: The resource has not been modified since the last request, so the client can use the cached version.
+
+**4xx: Client Errors**
+These codes indicate that the request contains bad syntax or cannot be fulfilled by the server due to an issue on the client’s side.
+
+- **400 Bad Request**: The server could not understand the request due to invalid syntax.
+- **401 Unauthorized**: Authentication is required to access the resource, or the provided credentials are invalid.
+- **403 Forbidden**: The client does not have permission to access the requested resource, even if authenticated.
+- **404 Not Found**: The requested resource could not be found on the server.
+- **405 Method Not Allowed**: The request method (e.g., GET, POST) is not supported by the resource.
+- **409 Conflict**: There is a conflict with the current state of the resource (e.g., a duplicate entry).
+- **429 Too Many Requests**: The client has sent too many requests in a given amount of time (rate limiting).
+
+**5xx: Server Errors**
+These codes indicate that the server failed to fulfill a valid request due to an error on the server side.
+
+- **500 Internal Server Error:** The server encountered an unexpected condition that prevented it from fulfilling the request.
+- **501 Not Implemented**: The server does not support the functionality required to fulfill the request.
+- **502 Bad Gateway**: The server, acting as a gateway or proxy, received an invalid response from an upstream server.
+- **503 Service Unavailable**: The server is currently unavailable (e.g., overloaded or down for maintenance).
+- **504 Gateway Timeout**: The server, acting as a gateway or proxy, did not receive a timely response from the upstream server.
+- **505 HTTP Version Not Supported**: The server does not support the HTTP protocol version used in the request.
+  
 # 3
 
 Create your own API's
