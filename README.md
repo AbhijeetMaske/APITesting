@@ -107,6 +107,28 @@ This is a URN for a book identified by its ISBN number. It names the resource bu
 2. URL: A type of URI that specifies where a resource is located and how to retrieve it.
 3. URN: A type of URI that identifies a resource by name, without specifying its location.
 
+### Feature & Resourse
+**Feature**
+- In manual testing, the term feature refers to the functionality or capability of the software that needs to be tested. A feature could be anything from a login functionality, a search option, or an account management system in a web or mobile application.
+- Testers manually interact with these features to ensure they work as expected. For instance, they might test the "Login" feature by entering valid and invalid credentials, verifying expected outcomes like successful login or error messages.
+
+Example in Manual Testing:
+- Feature: "Login functionality"
+  - Test Scenario: Verify that a user can log in using valid credentials.
+  - Test Case: Enter username and password, and verify successful login.
+
+**Resource**
+- In API automation testing, the term resource is used to refer to a specific entity or functionality exposed by the API. A resource could represent something like a user, product, order, or any other entity that the API interacts with.
+- In API testing, you don't test via a user interface; instead, you test resources directly by sending HTTP requests (e.g., GET, POST, PUT, DELETE) to perform actions on these resources.
+
+Example in API Testing:
+- Resource: "User"
+   - HTTP Methods:
+     - GET /api/users: Retrieve a list of users.
+     - POST /api/users: Create a new user.
+     - PUT /api/users/123: Update user 123.
+     - DELETE /api/users/123: Delete user 123.
+
 # 2
 
 POSTMAN - API Testing tool
