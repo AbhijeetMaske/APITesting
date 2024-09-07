@@ -366,3 +366,53 @@ pm.expect(jsonData.courses [0]).to.eql ("Java"); pm.expect(jsonData.courses [1])
 });
 ```
 
+## Validating JSON Schema
+
+### Response
+```
+{
+"id": 1,
+"name": "John",
+"location": "india",
+"phone": "1234567890",
+"courses":["Java", "Selenium"]
+}
+```
+
+### JSON schema
+```
+var schema={
+"$schema": "http://json-schema.org/draft-04/schema#",
+"type": "object",
+"properties":{
+"id": {
+"type": "integer"
+}
+"name": {
+"type": "string"
+},
+"location": {
+"type": "string"
+},
+"phone": {
+"type": "string"
+},
+"courses": {
+"type": "array",
+"items": [
+{
+"type": "string"
+},
+{
+"type": "string"
+},
+"required":[
+"id",
+"name",
+"location",
+"phone",
+"courses"
+]
+}
+```
+
