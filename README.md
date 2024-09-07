@@ -187,7 +187,7 @@ After sending a request, it is essential to validate the response to ensure the 
 - Headers:
   - Headers provide additional information about the request/response (e.g., Content-Type, Authorization).
 
-**HTTP Status Codes:**
+### HTTP Status Codes:
 
 **2xx: Success**
 These codes indicate that the client’s request was successfully received, understood, and accepted by the server.
