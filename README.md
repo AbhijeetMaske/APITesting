@@ -1,4 +1,15 @@
-# API Testing
+# API Testing [Manual]
+
+**API Testing** is a type of software testing that involves testing application programming interfaces (APIs) directly. It focuses on verifying the functionality, reliability, performance, and security of the APIs, ensuring that they meet the expected behaviors and requirements.
+
+In API testing, rather than testing the graphical user interface (GUI), the tester sends requests to the API, receives responses, and verifies the data, status codes, error handling, and time efficiency of the API. API testing is crucial because APIs serve as the communication layer between different software systems.
+
+Key aspects of API testing include:
+- **Validation of Response Data:** Ensuring the API returns the correct data and in the expected format (e.g., JSON, XML).
+- **HTTP Status Codes:** Checking if the API returns the correct status codes (e.g., 200 OK, 404 Not Found, 500 Internal Server Error).
+- **Error Handling:** Ensuring proper error messages and codes are returned when incorrect or invalid data is sent.
+- **Performance:** Measuring the response times of the API under various conditions, including load testing.
+- **Security:** Verifying that the API is secure, particularly for authentication, authorization, and data encryption.
 
 
 ## What is Client & Server
