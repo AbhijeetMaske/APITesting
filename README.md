@@ -73,7 +73,26 @@ REST API Methods:
 - HTTP (Hypertext Transfer Protocol): A protocol for transferring data between a client and server. Communication is not encrypted, making it less secure.
 - HTTPS (HTTP Secure): The secure version of HTTP. It uses encryption (SSL/TLS) to protect data during transmission, providing confidentiality and data integrity.
 
+**URI (Uniform Resource Identifier):**
+A URI is a general term used to identify or locate a resource on the internet. It can refer to either a URL or a URN. The purpose of a URI is to distinguish or reference a resource, whether by its name, location, or both.
 
+A URI can be categorized into:
+- URL (Uniform Resource Locator)
+- URN (Uniform Resource Name)
+
+Example:
+- `http://example.com/page` is a URI (and specifically a URL).
+- `urn:isbn:978-3-16-148410-0` is also a URI (and specifically a URN).
+
+**URL (Uniform Resource Locator):**
+A URL is a type of URI that specifies the location of a resource on the internet. It typically provides the means to access the resource by indicating its network location (via protocols like http, ftp, etc.).
+
+Components of a URL:
+- Protocol: The scheme (e.g., http, https, ftp) used to access the resource.
+- Domain: The host or server where the resource is located (e.g., example.com).
+- Path: The specific location or directory of the resource on the server (e.g., /page).
+Example:
+- `https://www.example.com/index.html` [ Protocol: https ], [ Domain: www.example.com ] & [ Path: /index.html ]
 
 # 2
 
