@@ -347,5 +347,22 @@ pm.expect (jsonData.courses).to.have.members (["Java", "Selenium"]);
 });
 ```
 
+## Validating JSON fields in Response
+```
+{
+"id": 1,
+"name": "John",
+"location": "india",
+"phone": "1234567890",
+"courses":["Java", "Selenium"]
+}
+```
 
+```
+pm. test ("value of location field is India", () => { var jsonData = pm. response.json();
+pm.expect (jsonData.id). to.eql (1); pm.expect(jsonData.name). to.eql ("John");
+pm.expect (jsonData.location). to. eql ("india"); pm.expect (jsonData.phone). to.eql ("1234567890");
+pm.expect(jsonData.courses [0]).to.eql ("Java"); pm.expect(jsonData.courses [1]).to.eql ("Selenium");
+});
+```
 
