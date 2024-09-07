@@ -17,19 +17,25 @@ Key aspects of API testing include:
 
 **A server** is physical computer dedicated to services to serve the need of other computers.Depending on the service that is running, it could be a file server, database server, home media server, print server or web server.
 
+### Architecture Tiers:
 
-### 1 tier
-we have single system, where client & server in same machine is comes under 1 tier architecture.
+### 1-Tier Architecture:
+- The client and server exist on the same machine.
+- The application, database, and user interface are all managed by one system.
+- Example: A personal computer running both a local application and its database.
 
-### 2 Tier
-We have multiple client, but they are accessing single database server which is located on different server.
+### 2-Tier Architecture:
+- There are multiple clients accessing a single server, typically a database server.
+- The client handles the presentation layer (user interface), while the server manages the data.
+- Example: A desktop application (client) that connects to a remote database server.
 
-### 3 tier
-Presenation layer
+### 3-Tier Architecture:
+- The system is divided into three layers:
+   - Presentation Layer: The user interface where users interact with the application (e.g., web browsers or GUI applications).
+   - Application Layer (Logic Layer): Processes the business logic and handles the communication between the presentation layer and data layer.
+   - Data Layer: Manages data storage, retrieval, and database operations.
+- This separation allows for better scalability, flexibility, and manageability.
 
-Application layer
-
-Data Layer
 
 ### Application Programing Interface (API)
 is way to communication between two application where appliation may differ in their platform or in tern of technology
