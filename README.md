@@ -1,5 +1,7 @@
 # API Testing [Manual]
 
+# 1. Chapter 1
+
 **API Testing** is a type of software testing that involves testing application programming interfaces (APIs) directly. It focuses on verifying the functionality, reliability, performance, and security of the APIs, ensuring that they meet the expected behaviors and requirements.
 
 In API testing, rather than testing the graphical user interface (GUI), the tester sends requests to the API, receives responses, and verifies the data, status codes, error handling, and time efficiency of the API. API testing is crucial because APIs serve as the communication layer between different software systems.
@@ -37,34 +39,39 @@ Key aspects of API testing include:
 - This separation allows for better scalability, flexibility, and manageability.
 
 
-### Application Programing Interface (API)
-is way to communication between two application where appliation may differ in their platform or in tern of technology
+### Application Programming Interface (API):
+An API is a method of communication between two software applications. These applications can vary in terms of platform or technology, yet APIs enable them to communicate with each other. APIs act as a bridge between different layers or systems.
 
-[ Front End of the application]
+- Front End: The user-facing part of an application, often known as the presentation layer.
+- Middle Layer (API Layer): The API acts as a mediator between the front end and the backend, responsible for:
+   - Taking data from the frontend and inserting it into the backend.
+   - Fetching data from the backend and displaying it on the frontend.
+- Backend Layer: The part of the system that stores data and handles the business logic.
 
-[Middle Layer (API Layer)]
-- This is responsiblity of mid layer to take the data from frontend and insert into the backend
-- This is responsiblity of mid layer to fetch the data from backend and dispay on the fronend
+**API as a Communication Layer:**
+An API facilitates communication between two layers of an application. For example, when a user submits a form on a website (frontend), the API processes that request and sends the data to the backend. It also retrieves information from the backend and displays it on the frontend.
 
-[Backend Layer]
+**Types of APIs:**
+1. SOAP (Simple Object Access Protocol):
+  - A protocol that uses XML to facilitate communication between systems.
+  - More structured and standardized, commonly used in enterprise-level applications.
+2. REST (Representational State Transfer):
+  - A more flexible and simpler alternative to SOAP.
+  - Uses standard web protocols (HTTP) and formats like JSON or XML for communication.
 
-*** API is way to communication between two layer.
+**Difference Between API and Web Service:**
+**API:** A general term that refers to a set of rules and tools that allow applications to interact with each other. APIs can be exposed over different communication protocols.
+**Web Service:** A type of API that is specifically designed for web-based interaction. All web services are APIs, but not all APIs are web services.
 
+REST API Methods:
+- GET: Retrieve data from a server (e.g., fetch user details).
+- POST: Send data to a server to create a new resource (e.g., create a new user).
+- PUT: Update an existing resource on a server (e.g., update user details).
+- DELETE: Remove a resource from a server (e.g., delete a user).
 
-API
-- SOAP
-- REST
-
-difference between API & Webservice
-
-
-REST API method
-GET
-PUT
-POST
-DELETE
-
-http VS Https
+**HTTP vs. HTTPS:**
+- HTTP (Hypertext Transfer Protocol): A protocol for transferring data between a client and server. Communication is not encrypted, making it less secure.
+- HTTPS (HTTP Secure): The secure version of HTTP. It uses encryption (SSL/TLS) to protect data during transmission, providing confidentiality and data integrity.
 
 
 
