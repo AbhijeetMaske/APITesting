@@ -228,140 +228,168 @@ These codes indicate that the server failed to fulfill a valid request due to an
 ### Sample API for Test
 
 
-# 3. Chapter 3 - Postman | Environment Setup & Types of HTTP Requests
+# 3. Chapter 3 - Postman | How To Create Own API's | JSON (Java Script Object Notation)
 
-Create your own API's
-1) NodeJs
- npm -node package manager
-  node --version
-  npm --version
-  npm -node package manager
 
-2) json-server
-   run the below command in the runtime/terminal
+**Step 1: Install Node.js and NPM**
+
+Before creating APIs, ensure you have Node.js and npm (Node Package Manager) installed.
+
+- Check Node.js version:
+   - Run this command to check if Node.js is installed:
+   
+   ``` 
+   node --version
+   ```
+   - This should display the version of Node.js. If not installed, download and install it from [here] (https://nodejs.org/en) .
+
+- Check NPM version:
+   - Run this command to check the npm version:
+   ```
+   npm --version
+   ```
+   - npm is automatically installed with Node.js, so you should see a version number. If not, reinstall Node.js.
+   
+**Step 2: Install json-server**
+
+json-server is a quick way to set up a REST API using a simple JSON file as the data source. It’s useful for testing and rapid prototyping.   
+
+- Install json-server globally:
+   - Run the following command to install json-server globally on your machine:
+   ```
    npm install -g json-server
+   ```
 
-JSON - JavaScript object Notation
+   - This will allow you to run json-server from any directory.
+   
+**Step 3: Create a JSON File for the Mock API**   
 
-Create a json 
-```json
+Create a JSON file that acts as the data source for your API. For example, create a file called `db.json` in your working directory with the following content:
+
+``` json
 {
-    "student": [
-        {
-            "id": 1,
-            "name": "John",
-            "location": "India",
-            "phone": "1234567890",
-            "course": [
-                "Java",
-                "Selenium"
-            ]
-        },
-        {
-            "id": 2,
-            "name": "Emily",
-            "location": "USA",
-            "phone": "9876543210",
-            "course": [
-                "Python",
-                "Data Science"
-            ]
-        },
-        {
-            "id": 3,
-            "name": "Michael",
-            "location": "Canada",
-            "phone": "5551234567",
-            "course": [
-                "JavaScript",
-                "React"
-            ]
-        },
-        {
-            "id": 4,
-            "name": "Sophia",
-            "location": "Australia",
-            "phone": "4449876543",
-            "course": [
-                "DevOps",
-                "AWS"
-            ]
-        },
-        {
-            "id": 5,
-            "name": "Liam",
-            "location": "UK",
-            "phone": "2223334445",
-            "course": [
-                "C++",
-                "Machine Learning"
-            ]
-        }
-    ]
+  "users": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "email": "john.doe@example.com"
+    },
+    {
+      "id": 2,
+      "name": "Jane Smith",
+      "email": "jane.smith@example.com"
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "title": "Post 1",
+      "content": "This is the content of post 1"
+    },
+    {
+      "id": 2,
+      "title": "Post 2",
+      "content": "This is the content of post 2"
+    }
+  ]
 }
+
 ```
-go to the path -- cmd 
-enter {path} json-server $fileName$.json
 
-Postman API
+**Step 4: Run the API Server with json-server**
 
-1. GET  - All student data |   http://localhost:3000/student
-2. GET -  get student data for id=1 | http://localhost:3000/student?id=1
-3. POST - create a new student data
-  ```json 
-   {
-    "name": "Ram",
-    "location": "Sharma",
-    "phone": "9037282",
-    "course": [
-        "Java",
-        "Angular"
-    ]
-}
+Now that your json-server is installed and you have the `db.json` file, you can run your API server.
+
+- Run json-server:
+   - Navigate to the folder where your db.json file is located.
+   - Run the following command to start the server:
+   ```
+   json-server --watch db.json
+   ```
+   - This will create a mock REST API using the `db.json` file and expose it at `http://localhost:3000`.
+
+**Step 5: Interact with Your API**
+
+Once the server is running, you can interact with your API using tools like Postman or directly through your browser. The following endpoints will be available:
+
+- GET /users: Retrieve the list of users.
+     - URL: `http://localhost:3000/users`
+     - Returns all users in the `users` array.
+
+- GET /users/1: Retrieve a specific user by ID.
+     - URL: `http://localhost:3000/users/1`
+     - Returns the user with `id=1`.
+
+- POST /users: Create a new user.
+     - You can use a tool like Postman to send a POST request to `http://localhost:3000/users` with a JSON body.
+
+- PUT /users/1: Update an existing user by ID.
+     - URL: `http://localhost:3000/users/1`
+     - Sends a **PUT** request to update the user with ID `1`.
+
+- DELETE /users/1: Delete a user by ID.
+     - URL: `http://localhost:3000/users/1`
+     - Sends a **DELETE** request to remove the user with ID `1`.
+
+**Step 6: Customizing the API**
+
+You can modify the db.json file to add new resources, such as products, orders, etc. Each array in the JSON file will correspond to an endpoint.
+
+**Advantages of Using json-server:**
+ - Quick Setup: You can create a fully functional REST API in minutes without writing any backend code.
+ - Mock Data: Ideal for testing and prototyping before implementing the actual backend.
+ - CRUD Operations: It automatically supports **GET**, **POST**, **PUT**, **PATCH**, and **DELETE** operations.
+
+# JSON (JavaScript Object Notation):
+
+- JSON is a lightweight data-interchange format that is easy for humans to read and write, and for machines to parse and generate.
+- It uses a text-based structure that follows JavaScript object notation syntax, making it easily understandable and widely used for storing and exchanging data across platforms.
+**Key Features of JSON:**
+- Human-Readable: JSON is designed to be simple and easy to read for humans, while still providing a structured format.
+- Text-Based: JSON is plain text written with JavaScript-like syntax, which makes it easy to transmit between client and server.
+- JavaScript Origin: While it is derived from JavaScript, JSON can be used with most modern programming languages.
+- Internet Media Type: The official media type for JSON is application/json.
+
+**Data Types in JSON:**
+JSON supports the following basic data types:
+1. Number: Any numeric value (e.g., 123, 45.67).
+2. Boolean: true or false.
+3. String: Any text value enclosed in double quotes (e.g., "hello").
+4. Null: Represents a null or empty value (e.g., null).
+5. Object: A collection of key-value pairs enclosed in curly braces {}.
+6. Array: An ordered list of values enclosed in square brackets [].
+
+**JSON Structure:**
+
+- JSON data is written as key-value pairs.
+- Keys are always strings (enclosed in double quotes), and the values can be any valid JSON data type.
+- **Curly braces** `{}` are used to represent **objects**.
+- **Square brackets** `[]` are used to represent **arrays**.
+
 ```
-POST - URL :  http://localhost:3000/student | body-->raw -->json 
-
-4.PUT - http://localhost:3000/student?id=5 
-5. DELETE - http://localhost:3000/student?id=5 
-
-
-
-# JSON
-
-- JSON - JavaScript Object Notation
-- json is syntax for storing and exchanging data
-- Basically it was designed for human-readable data exchange
-- JSON is text, Written with java script object notation
-- It has been extended from the javascript scripting language
-- json internet media type is application/json
-
-DATA TYPE
-1. Number
-2. Boolean
-3. String
-4. Null
-5. Object
-6. Array
-
-Data Will be represented Key & value
-key is always included in quotation
-curly braces should hold the object
-square braket hold arrays
-
-e.g. 
 {
- "Name" : "John"
+  "Name": "John",
+  "Age": 30,
+  "IsStudent": false,
+  "Hobbies": ["Reading", "Traveling", "Sports"]
 }
 
+```
+- Name, Age, and IsStudent are keys.
+- Their corresponding values are "John" (string), 30 (number), and false (boolean).
+- **Hobbies** is an array containing a list of values.
 
-Comparison JSON & XML
-
-JSON Array
-
- - json array reprents order list of value
- - json array can store multiple values. It can store string, Number, boolean or object in JSON array
- - In JSON Array, value must be seperated by comma
- - The  [square bracket ] represent the json array
+**Comparison: JSON vs XML:**
+| Feature | JSON | XML |
+|:------- |:---- |:----|
+| Syntax       |  Lightweight, simple |More complex, verbose   |
+| Data Representation          | Uses key-value pairs        |   Uses tag-based structure       |
+| Readability         | Easier to read and write        |   More difficult for humans       |
+| Format          | Text-based, object notation        |   Markup language with tags       |
+| Data Types          | Number, String, Boolean, Array        |   Everything is treated as a string       |
+| Performance          | Faster parsing due to simpler structure        |   Slower to parse       |
+| Size          | Generally smaller, less data overhead        |   Larger due to opening and closing tags       |
+| Usage          | Primarily for data interchange between systems        |   Used for data representation and document structure       |
 
 
 # 4
