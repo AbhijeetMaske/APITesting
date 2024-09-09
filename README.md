@@ -1,6 +1,6 @@
 # API Testing [Manual]
 
-# 1. Chapter 1 - API Introduction
+# Chapter 1 - API Introduction
 
 **API Testing** is a type of software testing that involves testing application programming interfaces (APIs) directly. It focuses on verifying the functionality, reliability, performance, and security of the APIs, ensuring that they meet the expected behaviors and requirements.
 
@@ -129,7 +129,8 @@ Example in API Testing:
      - PUT /api/users/123: Update user 123.
      - DELETE /api/users/123: Delete user 123.
 
-# 2. Chapter 2 - Postman | Environment Setup & Types of HTTP Requests
+
+# Chapter 2 - Postman | Environment Setup & Types of HTTP Requests
 
 ### Postman - API Testing Tool Overview:
 Postman is a powerful tool used for API testing, available as both a desktop and web application. It allows users to create, send, and manage HTTP requests and test the responses from APIs. Postman helps ensure APIs function correctly by validating responses, status codes, headers, and more.
@@ -228,7 +229,7 @@ These codes indicate that the server failed to fulfill a valid request due to an
 ### Sample API for Test
 
 
-# 3. Chapter 3 - Postman | How To Create Own API's | JSON (Java Script Object Notation)
+# Chapter 3 - Postman | How To Create Own API's | JSON (Java Script Object Notation)
 
 
 **Step 1: Install Node.js and NPM**
@@ -344,20 +345,22 @@ You can modify the db.json file to add new resources, such as products, orders, 
 
 - JSON is a lightweight data-interchange format that is easy for humans to read and write, and for machines to parse and generate.
 - It uses a text-based structure that follows JavaScript object notation syntax, making it easily understandable and widely used for storing and exchanging data across platforms.
+
 **Key Features of JSON:**
-- Human-Readable: JSON is designed to be simple and easy to read for humans, while still providing a structured format.
-- Text-Based: JSON is plain text written with JavaScript-like syntax, which makes it easy to transmit between client and server.
-- JavaScript Origin: While it is derived from JavaScript, JSON can be used with most modern programming languages.
-- Internet Media Type: The official media type for JSON is application/json.
+
+- **Human-Readable**: JSON is designed to be simple and easy to read for humans, while still providing a structured format.
+- **Text-Based**: JSON is plain text written with JavaScript-like syntax, which makes it easy to transmit between client and server.
+- **JavaScript Origin**: While it is derived from JavaScript, JSON can be used with most modern programming languages.
+- **Internet Media Type**: The official media type for JSON is application/json.
 
 **Data Types in JSON:**
 JSON supports the following basic data types:
-1. Number: Any numeric value (e.g., 123, 45.67).
-2. Boolean: true or false.
-3. String: Any text value enclosed in double quotes (e.g., "hello").
-4. Null: Represents a null or empty value (e.g., null).
-5. Object: A collection of key-value pairs enclosed in curly braces {}.
-6. Array: An ordered list of values enclosed in square brackets [].
+1. Number: Any numeric value (e.g., `123`, `45.67`).
+2. Boolean: `true` or `false`.
+3. String: Any text value enclosed in double quotes (e.g., `"hello"`).
+4. Null: Represents a null or empty value (e.g., `null`).
+5. Object: A collection of key-value pairs enclosed in curly braces `{}`.
+6. Array: An ordered list of values enclosed in square brackets `[]`.
 
 **JSON Structure:**
 
@@ -375,208 +378,268 @@ JSON supports the following basic data types:
 }
 
 ```
-- Name, Age, and IsStudent are keys.
-- Their corresponding values are "John" (string), 30 (number), and false (boolean).
+- **Name**, **Age**, and **IsStudent** are keys.
+- Their corresponding values are "**John**" (string), **30** (number), and **false** (boolean).
 - **Hobbies** is an array containing a list of values.
 
 **Comparison: JSON vs XML:**
-| Feature | JSON | XML |
-|:------- |:---- |:----|
-| Syntax       |  Lightweight, simple |More complex, verbose   |
-| Data Representation          | Uses key-value pairs        |   Uses tag-based structure       |
-| Readability         | Easier to read and write        |   More difficult for humans       |
-| Format          | Text-based, object notation        |   Markup language with tags       |
-| Data Types          | Number, String, Boolean, Array        |   Everything is treated as a string       |
-| Performance          | Faster parsing due to simpler structure        |   Slower to parse       |
-| Size          | Generally smaller, less data overhead        |   Larger due to opening and closing tags       |
-| Usage          | Primarily for data interchange between systems        |   Used for data representation and document structure       |
+| **Feature**         | **JSON**                                       | **XML**                                                    |
+|:--------------------|:-----------------------------------------------|:-----------------------------------------------------------|
+| Syntax              | Lightweight, simple                            |   More complex, verbose                                    |
+| Data Representation | Uses key-value pairs                           |   Uses tag-based structure                                 |
+| Readability         | Easier to read and write                       |   More difficult for humans                                |
+| Format              | Text-based, object notation                    |   Markup language with tags                                |
+| Data Types          | Number, String, Boolean, Array                 |   Everything is treated as a string                        |
+| Performance         | Faster parsing due to simpler structure        |   Slower to parse                                          |
+| Size                | Generally smaller, less data overhead          |   Larger due to opening and closing tags                   |
+| Usage               | Primarily for data interchange between systems |   Used for data representation and document structure      |
 
 
-# 4
+# Chapter 4 - API Testing | Postman | API Response Validations | Different types of Assertions
 
-Assetion - Validation point
-- Status code
-- Header
-- Cookies
-- Response time
-- Response body
+Key Validation Points in API Testing:
+- Status Code: Ensures that the response status code is correct (e.g., 200, 201).
+- Header: Validates if certain headers are present and their values (e.g., Content-Type).
+- Cookies: Checks for the presence of cookies and their values.
+- Response Time: Ensures that the API response is within an acceptable time frame.
+- Response Body: Validates the content of the response body, including JSON schema and values.
   
-PM- library - Function/Assertion provided
+**Postman Library (PM) Functions/Assertions:**
+Normal Function vs Arrow Function:
 
 Normal Function - 
-Arrow Function - 
-# Testing the API
-## Testing the status code
-Test for the  response status code
+
+```
+function() {
+  // code here
+}
+```
+
+Arrow Function: 
+
+```
+() => {
+  // code here
+}
+```
+
+## Testing the API
+
+**Testing the status code**
+
+Test the Response Status Code:
+
 ```
 pm.test("Response status code is 200", function () {
     pm.expect(pm.response.code).to.equal(200);
 });
 ```
-if you want to test for the status code being one of a set, include them all in an array use one of 
+
+Test for Multiple Status Codes:
+
 ```
-pm.test("successful POST request", ()=> {
+pm.test("Successful POST request", () => {
     pm.expect(pm.response.code).to.be.oneOf([200, 201]);
 });
 ```
-Check the status code text
+
+Test for Status Code Name:
+
 ```
-pm.test("status code name has a string", ()=> {
+pm.test("Status code name has a string", () => {
     pm.response.to.have.status("Created");
 });
 ```
-## Testing the Header
 
-Check that the response header is present
+**Testing the Header**
+
+Check if a Header is Present:
+
 ```
-pm.test("Content-Type header is present", ()=> {
+pm.test("Content-Type header is present", () => {
     pm.response.to.have.header("Content-Type");
 });
 ```
-Test for a response header having a particular value:
+
+Check for a Header Value:
+
 ```
-pm.test("Content-Type header is application/json", () => { pm.expect (pm. response.headers.get('Content- Type')).to.eql ('application/json; charset=utf-8');
+pm.test("Content-Type header is application/json", () => {
+    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');
 });
 ```
 
-## Testing cookies
-Test if a cookie is present in the response:
+**Testing cookies**
+Check if a Cookie is Present:
+
 ```
-pm.test("Cookie 'language' is present", () => { pm.expect (pm.cookies. has ('language')).to.be.true;
+pm.test("Cookie 'language' is present", () => {
+    pm.expect(pm.cookies.has('language')).to.be.true;
 });
 ```
 
-Test for a particular cookie value:
-```
-pm.test("Cookie language has value 1", () => { pm.expect(pm.cookies.get('language')).to.eql('en-gb');
-});
-```
-## Testing response times
+Check for a Cookie Value:
 
-Test for the response time to be within a specified range:
 ```
-pm.test("Response time is less than 200ms", () => { pm.expect(pm. response.responseTime).to.be.below (200);
+pm.test("Cookie language has value 'en-gb'", () => {
+    pm.expect(pm.cookies.get('language')).to.eql('en-gb');
 });
 ```
-## Asserting a value type
-Test the type of any part of the response:
+
+**Testing response times**
+
+Check if Response Time is Within Range:
+
+```
+pm.test("Response time is less than 200ms", () => {
+    pm.expect(pm.response.responseTime).to.be.below(200);
+});
+```
+
+**Asserting Value Types in the Response Body:**
+Example JSON Response:
+
 ```
 {
   "id": 1,
   "name": "John",
   "location": "india",
   "phone": "1234567890",
-  "courses": [        
-           "Java",
-           "Selenium"
-             ]
+  "courses": [
+    "Java",
+    "Selenium"
+  ]
 }
 ```
+Test Data Types:
 
 ```
-const jsonData = pm. response.json ();
-pm. test ("Test data type of the response", () => {
-     pm.expect(jsonData). to.be.an ("object");
-     pm.expect(jsonData.name).to.be.a ("string");
-     pm.expect(jsonData.id).to.be.a("number");
-     pm.expect(jsonData.courses).to.be.an ("array");
+const jsonData = pm.response.json();
+
+pm.test("Test data type of the response", () => {
+    pm.expect(jsonData).to.be.an("object");
+    pm.expect(jsonData.name).to.be.a("string");
+    pm.expect(jsonData.id).to.be.a("number");
+    pm.expect(jsonData.courses).to.be.an("array");
 });
 ```
 
-## Asserting array properties
-Check if an array is empty and if it contains particular items:
+**Asserting Array Properties:**
+
+Check if an Array Contains Items:
+
 ```
 {
   "id": 1,
   "name": "John",
   "location": "india",
   "phone": "1234567890",
-  "courses": [        
-           "Java",
-           "Selenium"
-             ]
+  "courses": [
+    "Java",
+    "Selenium"
+  ]
 }
 ```
 
 ```
-pm. test ("Test array properties", () => {
- //courses includes "Java"
-pm.expect (jsonData.courses). to. include ("Java");
-//courses array must include all listed
-pm.expect (jsonData.courses).to.have.members (["Java", "Selenium"]);
+pm.test("Test array properties", () => {
+    pm.expect(jsonData.courses).to.include("Java");
+    pm.expect(jsonData.courses).to.have.members(["Java", "Selenium"]);
 });
 ```
 
-## Validating JSON fields in Response
-```
-{
-"id": 1,
-"name": "John",
-"location": "india",
-"phone": "1234567890",
-"courses":["Java", "Selenium"]
-}
-```
+**Validating Specific JSON Fields in Response:**
 
 ```
-pm. test ("value of location field is India", () => { var jsonData = pm. response.json();
-pm.expect (jsonData.id). to.eql (1); pm.expect(jsonData.name). to.eql ("John");
-pm.expect (jsonData.location). to. eql ("india"); pm.expect (jsonData.phone). to.eql ("1234567890");
-pm.expect(jsonData.courses [0]).to.eql ("Java"); pm.expect(jsonData.courses [1]).to.eql ("Selenium");
+{
+  "id": 1,
+  "name": "John",
+  "location": "india",
+  "phone": "1234567890",
+  "courses": [
+    "Java",
+    "Selenium"
+  ]
+}
+```
+Check Specific Values:
+
+```
+pm.test("Value of location field is India", () => {
+    var jsonData = pm.response.json();
+    pm.expect(jsonData.id).to.eql(1);
+    pm.expect(jsonData.name).to.eql("John");
+    pm.expect(jsonData.location).to.eql("india");
+    pm.expect(jsonData.phone).to.eql("1234567890");
+    pm.expect(jsonData.courses[0]).to.eql("Java");
+    pm.expect(jsonData.courses[1]).to.eql("Selenium");
 });
 ```
 
-## Validating JSON Schema
+**Validating JSON Schema:**
 
-### Response
+Example JSON Response:
+
 ```
 {
-"id": 1,
-"name": "John",
-"location": "india",
-"phone": "1234567890",
-"courses":["Java", "Selenium"]
+  "id": 1,
+  "name": "John",
+  "location": "india",
+  "phone": "1234567890",
+  "courses": [
+    "Java",
+    "Selenium"
+  ]
 }
 ```
 
-### JSON schema
-```
-var schema={
-"$schema": "http://json-schema.org/draft-04/schema#",
-"type": "object",
-"properties":{
-"id": {
-"type": "integer"
-}
-"name": {
-"type": "string"
-},
-"location": {
-"type": "string"
-},
-"phone": {
-"type": "string"
-},
-"courses": {
-"type": "array",
-"items": [
-{
-"type": "string"
-},
-{
-"type": "string"
-},
-"required":[
-"id",
-"name",
-"location",
-"phone",
-"courses"
-]
-}
-```
-### JSON Schema Validation
+JSON Schema:
 
-pm.test('Schema is valid', function(){
- pm.expect(tv4.validate(jsonData, schema)).to.be.true;
+```
+var schema=
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "name": {
+      "type": "string"
+    },
+    "location": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "courses": {
+      "type": "array",
+      "items": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "string"
+        }
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "location",
+    "phone",
+    "courses"
+  ]
+}
+```
+
+Schema Validation:
+
+```
+pm.test('Schema is valid', function() {
+    pm.expect(tv4.validate(jsonData, schema)).to.be.true;
 });
+```
+

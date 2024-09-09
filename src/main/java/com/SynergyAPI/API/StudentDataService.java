@@ -46,4 +46,14 @@ public class StudentDataService {
     public boolean deleteStudentById(Long studentId) {
         return studentDataList.removeIf(student -> Objects.equals(student.getId(), studentId));
     }
+    
+ // Update student details
+    public void updateStudent(StudentData updatedStudentData) {
+        for (int i = 0; i < studentDataList.size(); i++) {
+            if (Objects.equals(studentDataList.get(i).getId(), updatedStudentData.getId())) {
+                studentDataList.set(i, updatedStudentData);
+                break;
+            }
+        }
+    }
 }
