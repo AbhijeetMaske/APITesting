@@ -643,3 +643,415 @@ pm.test('Schema is valid', function() {
 });
 ```
 
+# chapter 5 - Postman | Scripts & Types of Variables
+
+**Scripts**
+
+- 1. Pre-request Scripts
+In Postman, Pre-request Scripts allow you to programmatically set up data or conditions before the actual API request is sent. These scripts run before each request and are useful for setting up variables, handling authentication, dynamically modifying request data, and more.
+
+**Common Use Cases for Pre-request Scripts:**
+
+ - 1. Setting/Modifying Environment or Global Variables.
+ - 2. Creating Dynamic Request Data.
+ - 3. Generating Authentication Tokens (e.g., JWT or OAuth) before making the request.
+ - 4. Logging Data to Console for Debugging.
+ - 5. Custom Headers: Adding or manipulating headers dynamically.
+ 
+ 
+**Basic Syntax:**
+Pre-request scripts in Postman are written in JavaScript. You can use variables, libraries (like crypto-js for encryption), and functions provided by Postman.
+ 
+1. Setting/Modifying Variables:
+
+
+  - Setting Global Variables:
+ 
+ ```
+ pm.globals.set("key", "value");
+ ```
+ 
+ - Setting Environment Variables:
+ 
+ ```
+ pm.environment.set("auth_token", "12345");
+ ```
+ - Getting Variables:
+ 
+ ```
+ const token = pm.environment.get("auth_token");
+ ```
+ 
+ - Example: Generating a Timestamp
+ 
+ 
+ ```
+ const timestamp = new Date().getTime();
+ pm.environment.set("timestamp", timestamp);
+ ```
+ 
+ * * * * *
+ 
+2. Creating Dynamic Request Data:
+ 
+ - Generate a Random UUID: 
+ 
+ ```
+ const uuid = require('uuid');
+ const id = uuid.v4();  // generate a version 4 UUID
+ pm.environment.set("uuid", id);
+ ```
+ 
+ - Random Number for Testing:
+ 
+ ```
+ const randomNumber = Math.floor(Math.random() * 1000);
+ pm.environment.set("randomNumber", randomNumber);
+ ```
+ 
+ * * * * *
+ 
+ 3. Generating Authentication Tokens (JWT):
+ 
+ For JWT token generation, you can use Postman’s CryptoJS library to create secure tokens. 
+ 
+ - Example: JWT Token Generation
+ 
+ ```
+ const header = {
+    "alg": "HS256",
+    "typ": "JWT"
+};
+
+const payload = {
+    "sub": "1234567890",
+    "name": "John Doe",
+    "iat": Math.floor(Date.now() / 1000)
+};
+
+const secretKey = "your_secret_key";
+
+const encodedHeader = CryptoJS.enc.Base64.stringify(CryptoJS.enc.Utf8.parse(JSON.stringify(header)));
+const encodedPayload = CryptoJS.enc.Base64.stringify(CryptoJS.enc.Utf8.parse(JSON.stringify(payload)));
+
+const token = encodedHeader + "." + encodedPayload + "." + CryptoJS.HmacSHA256(encodedHeader + "." + encodedPayload, secretKey).toString(CryptoJS.enc.Base64);
+
+pm.environment.set("jwt_token", token);
+ 
+ ```
+ This will set the JWT token as an environment variable (jwt_token) that can be used in your API request.
+ 
+ 
+ * * * * *
+ 
+ 4. Logging Data to the Console:
+ 
+ You can use the Postman console to log data, which is helpful for debugging purposes.
+ 
+ ```
+ console.log("Generated UUID:", pm.environment.get("uuid"));
+ ```
+ To view logs, open the Postman console by clicking "View" → "Show Postman Console".
+ 
+ 
+ * * * * *
+ 
+ 5. Custom Headers:
+ You can set custom headers dynamically in the pre-request script, which will be added before the request is sent.
+ 
+ ```
+ pm.request.headers.add({
+    key: 'Custom-Header',
+    value: 'HeaderValue'
+});
+ ```
+ 
+**Example of a Full Pre-request Script:**
+Let's say you want to generate a dynamic JWT token and set it in the request headers, along with a timestamp and a random number:
+ 
+ ```
+ // Generate JWT token
+const header = {
+    "alg": "HS256",
+    "typ": "JWT"
+};
+
+const payload = {
+    "sub": "1234567890",
+    "name": "John Doe",
+    "iat": Math.floor(Date.now() / 1000)
+};
+
+const secretKey = "your_secret_key";
+
+const encodedHeader = CryptoJS.enc.Base64.stringify(CryptoJS.enc.Utf8.parse(JSON.stringify(header)));
+const encodedPayload = CryptoJS.enc.Base64.stringify(CryptoJS.enc.Utf8.parse(JSON.stringify(payload)));
+
+const token = encodedHeader + "." + encodedPayload + "." + CryptoJS.HmacSHA256(encodedHeader + "." + encodedPayload, secretKey).toString(CryptoJS.enc.Base64);
+
+// Set token as an environment variable
+pm.environment.set("jwt_token", token);
+
+// Generate a random number
+const randomNumber = Math.floor(Math.random() * 1000);
+pm.environment.set("randomNumber", randomNumber);
+
+// Set current timestamp
+const timestamp = new Date().getTime();
+pm.environment.set("timestamp", timestamp);
+
+// Log values to Postman console
+console.log("JWT Token:", token);
+console.log("Random Number:", randomNumber);
+console.log("Timestamp:", timestamp);
+
+// Set JWT token in the request header
+pm.request.headers.add({
+    key: 'Authorization',
+    value: `Bearer ${token}`
+});
+ 
+ ```
+ 
+ **Using Pre-request Script Data in the API Request:**
+Once you've set variables in the pre-request script, you can use them in your API request like this:
+
+   - Use environment variables: {{auth_token}}, {{timestamp}}, {{randomNumber}}
+   - In the headers or body, you can reference these variables by wrapping them in double curly braces {{}}.
+ 
+ 
+ **Lifecycle**
+
+In Postman, the lifecycle of a request follows a specific flow that can be broken down into Pre-request Script → Request → Response → Tests. Each step has a distinct role in the process of making an API call, processing the result, and running tests or assertions.
+ 
+ 
+ 1. Pre-request Script
+ 
+ This is the very first stage of the request lifecycle. The Pre-request Script runs before the actual request is sent. It's typically used to set up the environment, define variables, or create dynamic data that will be used in the API request.
+ 
+**Main Uses:**
+   - Generate dynamic data: e.g., random numbers, timestamps, or unique identifiers.
+   - Authentication: Create or retrieve access tokens (e.g., JWT, OAuth) and set them as environment variables or headers.
+   - Modify request data: Modify request parameters, headers, or body based on the script logic.
+   - Set environment or global variables: Dynamically assign values to variables for use in the request.
+   
+ 
+```
+ 	// Set an environment variable for the current timestamp
+const timestamp = new Date().getTime();
+pm.environment.set("timestamp", timestamp);
+
+// Generate a random number for dynamic request data
+const randomNumber = Math.floor(Math.random() * 1000);
+pm.environment.set("randomNumber", randomNumber);
+
+// Log pre-request variables for debugging
+console.log("Pre-request: timestamp =", timestamp);
+console.log("Pre-request: randomNumber =", randomNumber);
+```
+   
+
+In this script:
+   - A timestamp and random number are generated before the request is sent.
+   - These values can be referenced in the actual request (e.g., in headers, body, or parameters).
+   
+   
+ 2. Request  
+   
+This is where the API request is constructed and sent to the server. Postman allows you to configure various aspects of the request, including the HTTP method (GET, POST, PUT, DELETE, etc.), URL, parameters, headers, and body.
+
+**Main Components:**
+   - HTTP Method: Defines the type of action to be performed (e.g., GET for retrieving data, POST for creating new data).
+   - URL/Endpoint: The API endpoint where the request is sent.
+   - Headers: Custom headers such as content type (application/json), authorization tokens, etc.
+   - Query Parameters: Optional key-value pairs added to the URL.
+   - Request Body: Data to be sent with the request (e.g., in POST or PUT requests).   
+   
+ Example Request:
+ 
+ ```
+ POST https://api.example.com/data
+Headers: 
+   Content-Type: application/json
+   Authorization: Bearer {{auth_token}}
+Body (JSON):
+{
+   "user_id": {{randomNumber}},
+   "timestamp": "{{timestamp}}",
+   "name": "John Doe"
+}
+ ```
+
+   - The request uses the POST method to send data to an API.
+   - It contains dynamic data (e.g., {{auth_token}}, {{randomNumber}}, {{timestamp}}) generated in the Pre-request Script.
+   - The Headers section includes an authorization token for security.
+   
+
+3. Response
+Once the request is sent to the server, the API returns a Response. This is the server's answer to the request, which can include the data you asked for, confirmation of success, or an error message.
+
+**Main Response Elements:**
+
+ - Status Code: Indicates whether the request was successful (e.g., 200 OK, 404 Not Found, 500 Internal Server Error).
+ - Headers: Metadata about the response (e.g., content type, caching information).
+ - Body: The main content of the response, often in JSON or XML format. This is the actual data returned from the server.
+ - Cookies: Any cookies that the server sends back.
+
+Example Response:
+
+```
+{
+   "id": 123,
+   "name": "John Doe",
+   "created_at": "2024-09-01T12:00:00Z",
+   "status": "active"
+}
+```
+ - In this example, the response includes data for a user that was just created or fetched.   
+ 
+ 
+4. Tests
+
+After the response is received, the Tests phase runs. Postman allows you to write JavaScript-based assertions to validate the API response. These tests help verify that the API works as expected and returns the correct data or behavior.
+
+**Main Uses:** 
+ - Status Code Validation: Ensure that the response has the expected status (e.g., 200 for success).
+ - Header Validation: Check if the required headers (like Content-Type) are present in the response.
+ - Response Body Validation: Verify that the response contains the expected data, structure, and values.
+ - Response Time: Assert that the API responds within an acceptable time frame.
+ - Cookies Validation: Check if the required cookies are present.
+
+Example Tests:
+
+```
+// Test that the response status code is 200
+pm.test("Status code is 200", function () {
+    pm.expect(pm.response.code).to.equal(200);
+});
+
+// Test that the response contains the correct name
+pm.test("Name is John Doe", function () {
+    const jsonData = pm.response.json();
+    pm.expect(jsonData.name).to.equal("John Doe");
+});
+
+// Test that the response time is below 500ms
+pm.test("Response time is less than 500ms", function () {
+    pm.expect(pm.response.responseTime).to.be.below(500);
+});
+
+// Test that Content-Type header is application/json
+pm.test("Content-Type is application/json", function () {
+    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');
+});
+```
+
+These tests validate key aspects of the response:
+
+ - Status code: Confirms that the request succeeded (200 OK).
+ - Response body: Checks that the API returned the expected name (John Doe).
+ - Response time: Ensures that the response time is below 500ms.
+ - Headers: Asserts that the content type is JSON.
+
+
+**Complete Lifecycle Example:**
+ 
+1.Pre-request Script generates data and prepares the request:
+
+   - Generates a timestamp, random number, or authentication token.
+   - Logs necessary data for debugging.
+   
+2.Request is sent with the necessary parameters:
+
+   - Contains dynamic data created in the pre-request script.
+   - Uses HTTP methods (e.g., POST) to send or retrieve data from the server.
+
+3.Response is received:
+
+   - Contains the status code (200, 404, 500, etc.).
+   - Provides the response body, which is the data returned by the server.
+   
+4.Tests run to validate the response:
+
+   - Verifies that the API behaved as expected, returning the right data, status code, headers, and within the acceptable response time.
+   
+**Key Considerations:**
+
+ - Pre-request Script is optional, but it's very useful for generating dynamic data and preparing the environment.
+ - Tests are crucial for automating validation and ensuring API reliability, especially when running collections in Postman.
+ - Environment Variables: Use them effectively to manage dynamic data across requests.
+ - Performance Monitoring: Test the response times to track API performance.
+
+This flow enables you to build comprehensive API testing scenarios with Postman that cover everything from request preparation to response validation.   
+   
+   
+**Execution Flow of Pre-request Scripts in Postman**   
+ 
+ The order of execution of pre-request scripts is as follows:
+ 
+ 1. Collection-level pre-request script
+ 2. Folder-level pre-request script
+ 3. Folder-level pre-request script
+ 
+ 1. Collection-level Pre-request Script
+ 
+  - A collection in Postman is a group of folders and requests. You can define a pre-request script at the collection level, which will run before any request in the collection is sent.
+ - The collection-level pre-request script is executed before any folder-level or request-level pre-request scripts.
+ 
+ Use Cases:
+ - Setting global or environment variables that need to be used across multiple requests.
+ - Generating authentication tokens that all requests in the collection can use.
+ - Running setup code that applies to the entire collection.
+ 
+ ```
+ pm.environment.set("authToken", "12345abcde"); // Setting an authentication token
+ pm.environment.set("baseUrl", "https://api.example.com"); // Setting a base URL
+ ```
+ 
+ 2. Folder-level Pre-request Script
+ - Folders are used to organize related requests within a collection. You can define a pre-request script at the folder level, and it will run before any request in that folder is executed.
+ - The folder-level pre-request script is executed after the collection-level script but before the request-level script.
+ 
+Use Cases:
+ - Setting variables or data that are only needed for the requests within that folder.
+ - Preparing dynamic data specific to the set of requests within a folder.
+ 
+```
+pm.environment.set("folderVar", "folder-specific-data");
+
+```
+ 
+3. Request-level Pre-request Script 
+
+ - Each request can have its own pre-request script that runs just before the request is sent to the server.
+ - The request-level pre-request script is executed last, after any collection-level or folder-level pre-request scripts.
+ 
+ Use Cases:
+ - Defining variables or data that are specific to that individual request.
+ - Preparing unique parameters, payloads, or headers needed for the specific request.
+ 
+ ```
+ pm.environment.set("requestVar", "request-specific-data");
+ ```
+ 
+**Detailed Example of Pre-request Script Execution**
+Let’s assume you have the following structure in Postman:
+
+``` 
+Collection: User Management API
+    ├── Folder: User Creation
+    │     ├── Request: Create New User
+    └── Folder: User Deletion
+          └── Request: Delete User
+```
+
+**Scenario:**
+
+ - Collection-level pre-request script sets a global authentication token.
+ - Folder-level pre-request script sets specific data for requests in that folder.
+ - Request-level pre-request script sets variables specific to that request.
+
+ 
+#### Step-by-step execution for the request "Create New User" in the "User Creation" folder: 
+ 
+ 1. Collection-level Pre-request Script (runs first):
