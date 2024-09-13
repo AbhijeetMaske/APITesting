@@ -1089,10 +1089,19 @@ Logging Output:
 Collection pre-request script executed
 Folder pre-request script executed
 Request pre-request script executed
-
 ```
 
+**Variable**
 
+
+SCOPE
+Workspace --->Collection--->Request
+
+1.Global -- accessable in workspace
+2.Collection --  accessable in collection level
+3.Environment -- accesaable in all collection, but we need to particular environment
+4.Local -- accessable only within request (specfic to request)
+5.Data - External files CSV/text
 
 
 
