@@ -1093,15 +1093,128 @@ Request pre-request script executed
 
 **Variable**
 
+variables are a way to store and reuse values across requests, collections, and environments. They help make API testing dynamic and flexible. Variables have different scopes, and the one with the narrowest scope takes precedence if multiple variables have the same name.
 
-SCOPE
+**Scope of Variables**
 Workspace --->Collection--->Request
 
-1.Global -- accessable in workspace
-2.Collection --  accessable in collection level
-3.Environment -- accesaable in all collection, but we need to particular environment
-4.Local -- accessable only within request (specfic to request)
-5.Data - External files CSV/text
+1.Global: Accessible across the entire workspace.
+2.Collection: Accessible within a specific collection.
+3.Environment: Accessible across all collections, but specific to the selected environment.
+4.Local: Accessible only within a single request.
+5.Data: Loaded from external files (CSV, JSON) for use in requests, particularly in data-driven tests.
+
+**Hierarchy of Variable Scope:**
+
+- Local Variables (Highest priority, specific to the request).
+- Data Variables (From external files).
+- Environment Variables (Specific to the environment).
+- Collection Variables (Specific to the collection).
+- Global Variables (Lowest priority, accessible across the workspace
+
+**1. Setting and Using Variables in Pre-request Script**
+
+Local Variable (Specific to the request)
+- This variable is valid only within the request where it is defined.
+
+```
+// Setting a local variable in Pre-request script
+pm.variables.set("url_Local", "https://reqres.in");
+```
+- Usage in Request: {{url_Local}}
+
+**2. Global Variable (Accessible across the entire workspace)**
+
+- The global variable is accessible across all collections, environments, and requests within the workspace
+
+```
+// Setting a global variable
+pm.globals.set("userid_global", "2");
+```
+
+- Usage in Request: {{userid_global}}
+
+**3. Environment Variable (Specific to a selected environment)**
+
+- These variables are tied to a particular environment and accessible across requests as long as that environment is active.
+
+```
+// Setting an environment variable for QA environment
+pm.environment.set("userid_qa_env", "2");
+```
+
+- Usage in Request: {{userid_qa_env}}
+
+**4. Collection Variable (Specific to a collection)**
+- Collection variables are available across requests within the same collection.
+
+```
+// Setting a collection variable
+pm.collectionVariables.set("userid_collect", "2");
+```
+- Usage in Request: {{userid_collect}}
+
+**5. Data Variable (Loaded from external files like CSV)**
+
+- These variables come from external files, especially useful in data-driven testing.
+
+**Using Variables in Test Scripts**
+
+1.  Unsetting Global Variables
+
+```
+// Unset a global variable
+pm.globals.unset("userid_global");
+```
+- This removes the global variable after the test is complete.
+
+2. Unsetting Collection Variables
+
+```
+// Unset a collection variable
+pm.collectionVariables.unset("userid_collect");
+```
+
+**Variable Usage in Requests**
+
+Once the variables are set, you can use them directly in your requests by referencing them with the `{{variable_name}}` syntax.
+
+For example, if you want to create a GET request using variables:
+`GET {{url_Local}}/api/users/{{userid_qa_env}}`
+In this case:
+- `{{url_Local}}` will be replaced by `"https://reqres.in"`
+- `{{userid_qa_env}}` will be replaced by `"2"`
+
+**Sample Request with Variable Usage**
+
+```
+GET {{url_Local}}/api/users/{{userid_qa_env}}
+```
+
+**Pre-request Script Example:**
+
+```
+// Setting variables in pre-request script
+pm.variables.set("url_Local", "https://reqres.in"); // Local
+pm.globals.set("userid_global", "2"); // Global
+pm.environment.set("userid_qa_env", "3"); // Environment
+pm.collectionVariables.set("userid_collect", "4"); // Collection
+```
+
+**Test Script Example:**
+
+```
+// Test the API response
+pm.test("Status code is 200", function () {
+    pm.expect(pm.response.code).to.equal(200);
+});
+
+// Unset a global variable after the request
+pm.globals.unset("userid_global");
+
+// Unset collection variable
+pm.collectionVariables.unset("userid_collect");
+```
 
 
 
