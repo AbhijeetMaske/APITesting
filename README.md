@@ -1056,6 +1056,43 @@ Collection: User Management API
  
  1. Collection-level Pre-request Script (runs first):
 
+```
+pm.environment.set("authToken", "collection-level-token"); 
+console.log("Collection pre-request script executed");
+```
+- This script sets an authentication token that can be used by all requests in the collection.
+
+2. Folder-level Pre-request Script for the "User Creation" folder (runs second):
+
+```
+pm.environment.set("userRole", "admin");
+console.log("Folder pre-request script executed");
+```
+- This script sets the `userRole` variable to `admin`, which is specific to requests inside the "User Creation" folder.
+
+3. Request-level Pre-request Script for the "Create New User" request (runs third):
+```
+pm.environment.set("userName", "John Doe");
+console.log("Request pre-request script executed");
+```
+- This script sets a `userName` variable specifically for the "Create New User" request.
+
+**Order of Script Execution and Data Flow**
+
+In the case of the "Create New User" request:
+- First, the collection-level script runs and sets the `authToken`.
+- Second, the folder-level script for "User Creation" sets the `userRole` to `admin`.
+- Third, the request-level script for "Create New User" sets the `userName` to "John Doe".
+
+Logging Output:
+```
+Collection pre-request script executed
+Folder pre-request script executed
+Request pre-request script executed
+
+```
 
 
-    
+
+
+
