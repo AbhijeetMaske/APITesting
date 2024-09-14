@@ -1,10 +1,16 @@
-package com.SynergyAPI.API;
+package com.synergyconnect.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import com.synergyconnect.model.BookData;
+import com.synergyconnect.model.StudentData;
+import com.synergyconnect.service.BookDataService;
+import com.synergyconnect.service.StudentDataService;
+
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -13,6 +19,7 @@ public class LandingController {
 
 	@Autowired
 	private StudentDataService studentDataService;
+	private BookDataService bookDataService;
 
 	@GetMapping("/")
 	public String landingPage() {
@@ -57,7 +64,7 @@ public class LandingController {
 			studentDataService.addStudent(newStudentData);
 			Cookie cookie = new Cookie("lastAddedStudent", newStudentData.getName());
 			// Set a cookie with the last added student name
-			response.addCookie(cookie); 
+			response.addCookie(cookie);
 			return new ResponseEntity<>(newStudentData, HttpStatus.CREATED);
 		}
 
@@ -66,9 +73,9 @@ public class LandingController {
 		public ResponseEntity<String> deleteStudentById(@RequestParam Long studentId,
 				@CookieValue(value = "userRole", defaultValue = "guest") String userRole) {
 			if ("guest".equals(userRole)) {
-                return new ResponseEntity<>("Unauthorized access.", HttpStatus.UNAUTHORIZED);
-            }
-			
+				return new ResponseEntity<>("Unauthorized access.", HttpStatus.UNAUTHORIZED);
+			}
+
 			boolean isRemoved = studentDataService.deleteStudentById(studentId);
 			if (isRemoved) {
 				return new ResponseEntity<>("Student data deleted successfully.", HttpStatus.OK);
@@ -83,9 +90,9 @@ public class LandingController {
 				@RequestBody StudentData updatedStudentData,
 				@CookieValue(value = "userRole", defaultValue = "guest") String userRole) {
 			if ("guest".equals(userRole)) {
-                return new ResponseEntity<>("Unauthorized access.", HttpStatus.UNAUTHORIZED);
-            }
-			
+				return new ResponseEntity<>("Unauthorized access.", HttpStatus.UNAUTHORIZED);
+			}
+
 			StudentData existingStudent = studentDataService.getStudentById(studentId);
 			if (existingStudent != null) {
 				// Replace the entire student record with new data
@@ -103,9 +110,9 @@ public class LandingController {
 				@RequestBody StudentData partialUpdateData,
 				@CookieValue(value = "userRole", defaultValue = "guest") String userRole) {
 			if ("guest".equals(userRole)) {
-                return new ResponseEntity<>("Unauthorized access.", HttpStatus.UNAUTHORIZED);
-            }
-			
+				return new ResponseEntity<>("Unauthorized access.", HttpStatus.UNAUTHORIZED);
+			}
+
 			StudentData existingStudent = studentDataService.getStudentById(studentId);
 			if (existingStudent != null) {
 				// Update only the fields that are provided in the request
@@ -134,4 +141,5 @@ public class LandingController {
 			}
 		}
 	}
+
 }

@@ -1,4 +1,4 @@
-package com.SynergyAPI.API;
+package com.synergyconnect.model;
 
 public class StudentData {
     private Long id;
