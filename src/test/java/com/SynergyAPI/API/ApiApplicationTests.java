@@ -1,4 +1,4 @@
-package com.synergyconnect.test;
+package com.SynergyAPI.API;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

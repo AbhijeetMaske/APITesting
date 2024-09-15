@@ -1,8 +1,6 @@
-package com.synergyconnect.service;
+package com.SynergyAPI.API;
 
 import org.springframework.stereotype.Service;
-
-import com.synergyconnect.model.StudentData;
 
 import java.util.ArrayList;
 import java.util.List;

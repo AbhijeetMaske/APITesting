@@ -1,4 +1,4 @@
-package com.synergyconnect.controller;
+package com.SynergyAPI.API;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
