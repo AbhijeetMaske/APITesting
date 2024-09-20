@@ -1246,4 +1246,10 @@ pm.collectionVariables.unset("userid_collect");
 ```
 
 
+# Chapter 6
+
+### Postman | API Chaining
+
+
+
 
