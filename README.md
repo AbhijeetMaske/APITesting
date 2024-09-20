@@ -1,6 +1,29 @@
-# API Testing [Manual]
+# **API Testing [Manual]**
 
-# Chapter 1 - API Introduction
+Welcome to the ultimate API Testing.
+
+---
+
+<img  align= center width=50px height=50px src="https://media4.giphy.com/media/3hoLIVAJYkz6T0Ichp/giphy.gif?cid=6c09b952m4j3poopinf91rquev6qy4e8avu0bflq1e0vh4gp&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=s"> <a id="table-of-contents">Contents</a></br>
+
+
+ - [Introduction](#introduction)
+ - [Getting Started](#getting-started)
+ - [Chapter 1 - API Introduction](#chapter-1)
+ - [Chapter 2 - Postman | Environment Setup & Types of HTTP Requests](#chapter-2)
+ - [Chapter 3 - Postman | How To Create Own API's | JSON (Java Script Object Notation)](#chapter-3)
+ - [Chapter 4 - API Testing | Postman | API Response Validations | Different types of Assertions](#chapter-4)
+ - [Chapter 5 - Postman | Scripts & Types of Variables](#chapter-5)
+
+---
+
+# Introduction
+
+#Getting Started
+
+# Chapter 1
+
+### API Introduction
 
 **API Testing** is a type of software testing that involves testing application programming interfaces (APIs) directly. It focuses on verifying the functionality, reliability, performance, and security of the APIs, ensuring that they meet the expected behaviors and requirements.
 
@@ -130,7 +153,8 @@ Example in API Testing:
      - DELETE /api/users/123: Delete user 123.
 
 
-# Chapter 2 - Postman | Environment Setup & Types of HTTP Requests
+# Chapter 2
+### Postman | Environment Setup & Types of HTTP Requests
 
 ### Postman - API Testing Tool Overview:
 Postman is a powerful tool used for API testing, available as both a desktop and web application. It allows users to create, send, and manage HTTP requests and test the responses from APIs. Postman helps ensure APIs function correctly by validating responses, status codes, headers, and more.
@@ -229,8 +253,9 @@ These codes indicate that the server failed to fulfill a valid request due to an
 ### Sample API for Test
 
 
-# Chapter 3 - Postman | How To Create Own API's | JSON (Java Script Object Notation)
+# Chapter 3
 
+### Postman | How To Create Own API's | JSON (Java Script Object Notation)
 
 **Step 1: Install Node.js and NPM**
 
@@ -395,7 +420,9 @@ JSON supports the following basic data types:
 | Usage               | Primarily for data interchange between systems |   Used for data representation and document structure      |
 
 
-# Chapter 4 - API Testing | Postman | API Response Validations | Different types of Assertions
+# Chapter 4
+
+### Postman | API Response Validations | Different types of Assertions
 
 Key Validation Points in API Testing:
 - Status Code: Ensures that the response status code is correct (e.g., 200, 201).
@@ -643,7 +670,9 @@ pm.test('Schema is valid', function() {
 });
 ```
 
-# chapter 5 - Postman | Scripts & Types of Variables
+# chapter 5
+
+### Postman | Scripts & Types of Variables
 
 **Scripts**
 

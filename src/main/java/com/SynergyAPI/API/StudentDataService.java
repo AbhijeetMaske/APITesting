@@ -20,7 +20,7 @@ public class StudentDataService {
         studentDataList.add(new StudentData(1L, "John Doe", 20, "A", "john.doe@example.com", "New York, USA", "Mathematics"));
         studentDataList.add(new StudentData(2L, "Jane Smith", 22, "B", "jane.smith@example.com", "London, UK", "Physics"));
         studentDataList.add(new StudentData(3L, "Michael Johnson", 21, "A", "michael.johnson@example.com", "Toronto, Canada", "Chemistry"));
-        studentDataList.add(new StudentData(4L, "Emily Davis", 19, "B+", "emily.davis@example.com", "Sydney, Australia", "Biology"));
+        studentDataList.add(new StudentData(4L, "Emily Davis", 20, "B+", "emily.davis@example.com", "Sydney, Australia", "Biology"));
     }
 
     // Retrieve all students
